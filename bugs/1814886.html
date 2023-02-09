@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Bug 1814886</title>
+</head>
+
+<style>
+    #parent {
+        width: 100%;
+        height: 120vh;
+        margin-top: 1vh;
+
+        background-color: steelblue;
+    }
+
+    #child {
+        width: 50vw;
+        height: 50vh;
+        margin: auto;
+        margin-top: 1vh;
+
+        overflow: auto;
+        overscroll-behavior: none;
+    }
+
+    #innerChild {
+        width: 70vw;
+        height: 100%;
+        background-color: seagreen;
+    }
+
+    body {
+        margin-top: 1vh;
+    }
+</style>
+
+<body>
+    <p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1814886">Bug 1814886</a></p>
+    <div id="parent">
+        <p>Parent</p>
+        <div id="child">
+            <div id="innerChild">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
