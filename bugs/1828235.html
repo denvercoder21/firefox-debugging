@@ -3,32 +3,16 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Bug 1828235 -
-        "Scroll to hide toolbar" causes errant scroll and zoom on input focus
-    </title>
+    <title>Bug 1828235 - "Scroll to hide toolbar" causes errant scroll and zoom on</title>
 </head>
 
-<style>
-    body {
-        margin: 0 32px;
-    }
-
-    .touch-none {
-        touch-action: none;
-        margin-top: 330px;
-    }
-
-    input {
-        box-sizing: border-box;
-        width: 100%;
-    }
-</style>
-
 <body>
-    <div class="touch-none">
-        <input />
-    </div>
+    <h1><a target="_blank" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1828235">Bug 1828235</a></h1>
+    <p>Dynamic Toolbar misbehaves when panning a child element
+    </p>
+    <p><a href="1828235-overlap.html">Input field overlaps (reproduces the bug)</a></p>
+    <p><a href="1828235-high.html">Input field too high</a></p>
+    <p><a href="1828235-low.html">Input field too low</a></p>
 </body>
 
 </html>
