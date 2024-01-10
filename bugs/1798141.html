@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=2000" />
+    <title>Bug 1798141 - Make single finger tap zoom easier to activate</title>
+</head>
+
+<body>
+    <h1><a target="_blank" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1798141">Bug 1798141</a></h1>
+    <p>Make single finger tap zoom easier to activate</p>
+    <p>∆ Start/End: 0 ms</p>
+    <p>∆ Start/Start: 0 ms</p>
+    <p>∆ End/Start: 0 ms</p>
+    <p>Touch: </p>
+    <p>Clicks: 0</p>
+    <p>Double Clicks: 0</p>
+    <p>∆ Start/Click: 0 ms</p>
+    <p>∆ End/Click: 0 ms</p>
+    <p>Touch move:</p>
+
+    <script>
+        var start = Date.now();
+        var end = Date.now();
+        var elapsedStartEnd = document.getElementsByTagName("p")[1];
+        var elapsedStartStart = document.getElementsByTagName("p")[2];
+        var elapsedEndStart = document.getElementsByTagName("p")[3];
+        var touchState = document.getElementsByTagName("p")[4];
+        var click = document.getElementsByTagName("p")[5];
+        var doubleClick = document.getElementsByTagName("p")[6];
+        var startClick = document.getElementsByTagName("p")[7];
+        var endClick = document.getElementsByTagName("p")[8];
+        var touchMoveState = document.getElementsByTagName("p")[9];
+        var numberOfClicks = 0;
+        var numberOfDoubleClicks = 0;
+
+        document.addEventListener("touchstart", (event) => {
+            var now = Date.now();
+
+            startStart = now - start;
+            elapsedStartStart.innerText = `∆ Start/Start: ${startStart} ms`;
+
+            endStart = now - end;
+            elapsedEndStart.innerText = `∆ End/Start: ${endStart} ms`;
+
+            start = Date.now();
+            touchState.innerText = `Touch: Start`;
+        }, false);
+
+        document.addEventListener("touchend", (event) => {
+            var now = Date.now();
+
+            end = now;
+
+            var startEnd = now - start;
+            elapsedStartEnd.innerText = `∆ Start/End: ${startEnd} ms`;
+
+            touchState.innerText = `Touch: End`;
+            touchMoveState.innerText = "Touch move:";
+        }, false);
+
+        document.addEventListener("click", (event) => {
+            var now = Date.now();
+
+            var deltaStartClick = now - start;
+            startClick.innerText = `∆ Start/Click: ${deltaStartClick} ms`;
+
+            var deltaEndClick = now - end;
+            endClick.innerText = `∆ End/Click: ${deltaEndClick} ms`;
+
+            numberOfClicks += 1;
+            click.innerText = `Clicks: ${numberOfClicks}`;
+            console.log(`Click #${numberOfClicks}`);
+        }, false);
+
+        document.addEventListener("dblclick", (event) => {
+            numberOfDoubleClicks += 1;
+            doubleClick.innerText = `Double Clicks: ${numberOfDoubleClicks}`;
+            console.log(`Double Click #${numberOfDoubleClicks}`);
+        }, false);
+
+        document.addEventListener("touchmove", (event) => {
+            touchMoveState.innerText = "Touch move: MOVING";
+        }, false);
+    </script>
+</body>
+
+</html>
