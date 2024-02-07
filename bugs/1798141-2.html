@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Bug 1798141 - Make single finger tap zoom easier to activate</title>
+</head>
+
+<body>
+    <h1><a target="_blank" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1798141">Bug 1798141</a></h1>
+    <p>Make single finger tap zoom easier to activate</p>
+    <p>∆ Start/End: 0 ms</p>
+    <p>∆ Start/Start: 0 ms</p>
+    <p>∆ End/Start: 0 ms</p>
+    <p>Touch: </p>
+    <p>Clicks: 0</p>
+    <p>Double Clicks: 0</p>
+    <p>∆ Start/Click: 0 ms</p>
+    <p>∆ End/Click: 0 ms</p>
+    <p>Touch move:</p>
+    <p>
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae viverra lacus. Phasellus volutpat nisi erat, sed venenatis nibh feugiat et. Vestibulum ullamcorper elit vehicula lacus accumsan, vulputate pellentesque arcu rhoncus. Duis dignissim, eros nec eleifend blandit, nisi ipsum ultricies urna, ut venenatis sapien erat finibus risus. Ut aliquam, neque quis pretium consequat, libero elit euismod felis, a gravida leo odio at ex. Sed pharetra erat eget elit ultrices, ac consectetur diam convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum gravida eros eu suscipit.
+        
+        Quisque et sapien eget ligula lacinia ornare vel vel metus. Integer vulputate fermentum lectus vel bibendum. Vivamus vel orci in massa tincidunt bibendum ultrices sit amet purus. Curabitur sit amet sem nec justo pharetra tincidunt. Nullam eu ex mattis dolor sagittis efficitur. Phasellus ornare, magna sit amet eleifend dapibus, quam elit vestibulum purus, ac commodo purus risus nec lectus. Suspendisse potenti. Suspendisse a metus sed quam pharetra tincidunt quis a eros. In quam est, euismod a mauris quis, commodo gravida quam. Nulla a lobortis neque, tincidunt facilisis augue. Vivamus euismod tincidunt enim sit amet tempor. Vivamus mattis, elit id porttitor posuere, sapien massa blandit risus, congue ornare purus nibh ut eros. Aliquam sed ligula odio. Sed congue libero pellentesque ligula volutpat, sed feugiat justo fermentum. Quisque imperdiet vulputate lacus, id aliquet leo bibendum vitae. Curabitur ac magna imperdiet tortor pellentesque semper quis eget urna.
+        
+        Mauris placerat erat ac nulla elementum, eget ullamcorper nunc bibendum. Suspendisse potenti. Quisque quis pretium mauris. In et eros pellentesque, viverra lorem ut, condimentum ex. Quisque in ante erat. Donec diam enim, tincidunt quis ex eget, egestas facilisis tellus. Etiam nec efficitur tellus. Praesent quis posuere libero. Donec id scelerisque ipsum. Duis nec consectetur leo.
+        
+        In et tristique leo, ac lacinia ipsum. Mauris rutrum viverra sem eu viverra. Praesent ornare vestibulum neque, eget mattis libero faucibus vitae. Nullam in lectus justo. Etiam nisi ligula, lacinia vel justo iaculis, fringilla aliquam quam. Phasellus fermentum in purus vitae venenatis. Nunc fermentum massa in arcu ornare, ut porta tellus consectetur.
+        
+        Quisque tincidunt risus id magna auctor eleifend. Nulla maximus tempor ipsum, vitae lobortis sem porta et. Integer ac justo nisl. Nulla maximus erat nec laoreet iaculis. Quisque pulvinar ac turpis ut placerat. Nullam efficitur laoreet fermentum. Integer purus lacus, laoreet dignissim est nec, ultricies maximus quam. Suspendisse diam odio, vehicula id neque porttitor, varius varius turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales tortor sit amet mi vulputate hendrerit. Duis quis nisi sit amet libero ultrices rutrum nec malesuada odio. Sed imperdiet felis mollis mattis tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras nec justo ut nisi fermentum dignissim. Etiam eleifend vitae metus vel euismod. </p>
+
+    <script>
+        var start = Date.now();
+        var end = Date.now();
+        var elapsedStartEnd = document.getElementsByTagName("p")[1];
+        var elapsedStartStart = document.getElementsByTagName("p")[2];
+        var elapsedEndStart = document.getElementsByTagName("p")[3];
+        var touchState = document.getElementsByTagName("p")[4];
+        var click = document.getElementsByTagName("p")[5];
+        var doubleClick = document.getElementsByTagName("p")[6];
+        var startClick = document.getElementsByTagName("p")[7];
+        var endClick = document.getElementsByTagName("p")[8];
+        var touchMoveState = document.getElementsByTagName("p")[9];
+        var numberOfClicks = 0;
+        var numberOfDoubleClicks = 0;
+
+        document.addEventListener("touchstart", (event) => {
+            var now = Date.now();
+
+            startStart = now - start;
+            elapsedStartStart.innerText = `∆ Start/Start: ${startStart} ms`;
+
+            endStart = now - end;
+            elapsedEndStart.innerText = `∆ End/Start: ${endStart} ms`;
+
+            start = Date.now();
+            touchState.innerText = `Touch: Start`;
+        }, false);
+
+        document.addEventListener("touchend", (event) => {
+            var now = Date.now();
+
+            end = now;
+
+            var startEnd = now - start;
+            elapsedStartEnd.innerText = `∆ Start/End: ${startEnd} ms`;
+
+            touchState.innerText = `Touch: End`;
+            touchMoveState.innerText = "Touch move:";
+        }, false);
+
+        document.addEventListener("click", (event) => {
+            var now = Date.now();
+
+            var deltaStartClick = now - start;
+            startClick.innerText = `∆ Start/Click: ${deltaStartClick} ms`;
+
+            var deltaEndClick = now - end;
+            endClick.innerText = `∆ End/Click: ${deltaEndClick} ms`;
+
+            numberOfClicks += 1;
+            click.innerText = `Clicks: ${numberOfClicks}`;
+            console.log(`Click #${numberOfClicks}`);
+        }, false);
+
+        document.addEventListener("dblclick", (event) => {
+            numberOfDoubleClicks += 1;
+            doubleClick.innerText = `Double Clicks: ${numberOfDoubleClicks}`;
+            console.log(`Double Click #${numberOfDoubleClicks}`);
+        }, false);
+
+        document.addEventListener("touchmove", (event) => {
+            touchMoveState.innerText = "Touch move: MOVING";
+        }, false);
+    </script>
+</body>
+
+</html>
