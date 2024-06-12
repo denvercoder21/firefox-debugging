@@ -7,23 +7,23 @@
     <title>Bug 1828235 -
         "Scroll to hide toolbar" causes errant scroll and zoom on input focus (Fenix)
     </title>
+    <style>
+        body {
+            margin: 0 32px;
+        }
+
+        .touch-none {
+            touch-action: none;
+            /* margin-top: 340px; */
+            margin-top: 98svh;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+        }
+    </style>
 </head>
-
-<style>
-    body {
-        margin: 0 32px;
-    }
-
-    .touch-none {
-        touch-action: none;
-        margin-top: 360px;
-    }
-
-    input {
-        box-sizing: border-box;
-        width: 100%;
-    }
-</style>
 
 <body>
     <div class="touch-none">
