@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bug 1841896 - Port APZ Fission Tests - helper-fission-tap iframe</title>
+    <script>
+        function setBackground() {
+            console.log("iframe click");
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            document.body.style.backgroundColor = "#" + randomColor;
+        }
+
+    </script>
+    <style>
+        body,
+        html {
+            margin: 0;
+        }
+
+        .button {
+            border: none;
+            color: gray;
+            text-align: center;
+            margin: 0px;
+            background-color: darkolivegreen;
+            top: 0px;
+            left: 0px;
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+
+</html>
+
+<body>
+    <button class="button" onclick="setBackground()">Click</button>
+</body>
+
+</html>
