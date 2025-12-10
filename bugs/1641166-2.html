@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<style>
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    div {
+        height: 100%;
+        position: absolute;
+    }
+</style>
+<div id="result" style="position:absolute; right: 0px;"></div>
+<div id="vh" style="width: 100px; height: 100vh; background-color: green; position: absolute; left: 100px;"></div>
+<div id="percent" style="width: 100px; height: 100%; background-color: pink; position: absolute;"></div>
+<div id="green" style="width: 100%; top: 100px;"></div>
+<script>
+    result.innerHTML = "100vh - 100% = " +
+        (parseInt(getComputedStyle(vh).height) - parseInt(getComputedStyle(percent).height)) + "px";
+    window.onload = () => {
+        document.querySelector("meta[name=viewport]").content = "width = 1200";
+        requestAnimationFrame(() => {
+            result.innerHTML += "<br>100vh - 100% = " +
+                (parseInt(getComputedStyle(vh).height) - parseInt(getComputedStyle(percent).height)) + "px";
+        });
+    };
+</script>
