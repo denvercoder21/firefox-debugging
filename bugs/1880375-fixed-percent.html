@@ -1,0 +1,54 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=0.5" />
+<style>
+  html {
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none;
+  }
+  body {
+    width: 200%;
+    height: 2000px;
+    margin: 0;
+    padding: 0;
+  }
+
+  #fixed-element {
+    width: 100%;
+    height: 200%;
+    position: fixed;
+    top: 0px;
+    background-color: green;
+  }
+
+  #height-display {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    font-family: monospace;
+    font-size: 16px;
+    z-index: 1000;
+    border-radius: 5px;
+  }
+</style>
+<div id="fixed-element"></div>
+<div id="height-display">Height: calculating...</div>
+
+<script>
+  const fixedElement = document.getElementById('fixed-element');
+  const heightDisplay = document.getElementById('height-display');
+
+  function updateHeight() {
+    const height = window.getComputedStyle(fixedElement).height;
+    heightDisplay.textContent = `Height: ${height}`;
+  }
+
+  // Check height every 2 seconds
+  setInterval(updateHeight, 2000);
+
+  updateHeight();
+</script>
